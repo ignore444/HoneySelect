@@ -12,7 +12,7 @@ FAnimNode_ModifyBones::FAnimNode_ModifyBones()
 {
 }
 
-void FAnimNode_ModifyBones::Initialize(const FAnimationInitializeContext& Context)
+void FAnimNode_ModifyBones::Initialize_AnyThread(const FAnimationInitializeContext& Context)
 {
 	LocalPose.Initialize(Context);
 
@@ -41,12 +41,12 @@ void FAnimNode_ModifyBones::ReinitBoneIndices(struct FAnimInstanceProxy* AnimIns
 	}
 }
 
-void FAnimNode_ModifyBones::CacheBones(const FAnimationCacheBonesContext& Context)
+void FAnimNode_ModifyBones::CacheBones_AnyThread(const FAnimationCacheBonesContext& Context)
 {
 	LocalPose.CacheBones(Context);
 }
 
-void FAnimNode_ModifyBones::Update(const FAnimationUpdateContext& Context)
+void FAnimNode_ModifyBones::Update_AnyThread(const FAnimationUpdateContext& Context)
 {
 	LocalPose.Update(Context);
 
@@ -71,7 +71,7 @@ void FAnimNode_ModifyBones::GatherDebugData(FNodeDebugData& DebugData)
 	LocalPose.GatherDebugData(DebugData);
 }
 
-void FAnimNode_ModifyBones::Evaluate(FPoseContext& Output)
+void FAnimNode_ModifyBones::Evaluate_AnyThread(FPoseContext& Output)
 {
 	LocalPose.Evaluate(Output);
 	FCompactPose& OutPose = Output.Pose;

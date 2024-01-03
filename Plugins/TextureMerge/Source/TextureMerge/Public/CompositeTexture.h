@@ -53,4 +53,6 @@ public:
 	static UCompositeTexture* UpdateTint(UCompositeTexture* RenderTarget, const FColor& Tint, const int32 Index);
 	///@brief Update all tint layers.
 	static UCompositeTexture* UpdateAllTints(UCompositeTexture* RenderTarget, const TArray<FColor>& LayerTints);
+
+	virtual uint32 CalcTextureMemorySizeEnum(ETextureMipCount Enum) const override;
 };

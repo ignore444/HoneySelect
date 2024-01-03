@@ -10,9 +10,6 @@
 // 
 
 #include "TextureMerge.h"
-#include "TextureMergePrivatePCH.h"
-
-#define LOCTEXT_NAMESPACE "FTextureMergeModule"
 
 void FTextureMergeModule::StartupModule()
 {
@@ -27,8 +24,6 @@ void FTextureMergeModule::ShutdownModule()
 	// we call this function before unloading the module.
 	
 	UE_LOG(LogExit, Log, TEXT("TextureMerge Plugin unloaded."));
-}
+}	
 
-#undef LOCTEXT_NAMESPACE
-	
 IMPLEMENT_MODULE(FTextureMergeModule, TextureMerge)

@@ -113,7 +113,7 @@ UCompositeTexture* UCompositeTexture::UpdateTint(UCompositeTexture* RenderTarget
 	{
 		return NULL;
 	}
-
+	
 	RenderTarget->LayerTints[Index] = Tint;
 
 	RenderTarget->UpdateResource();
@@ -136,3 +136,15 @@ UCompositeTexture* UCompositeTexture::UpdateAllTints(UCompositeTexture* RenderTa
 	return RenderTarget;
 }
 
+uint32 UCompositeTexture::CalcTextureMemorySizeEnum(ETextureMipCount Enum) const
+{
+	// Calculate size based on format.  All mips are resident on render targets so we always return the same value.
+	EPixelFormat Format = GetFormat();
+	int32 BlockSizeX = GPixelFormats[Format].BlockSizeX;
+	int32 BlockSizeY = GPixelFormats[Format].BlockSizeY;
+	int32 BlockBytes = GPixelFormats[Format].BlockBytes;
+	int32 NumBlocksX = (SizeX + BlockSizeX - 1) / BlockSizeX;
+	int32 NumBlocksY = (SizeY + BlockSizeY - 1) / BlockSizeY;
+	int32 NumBytes = NumBlocksX * NumBlocksY * BlockBytes;
+	return NumBytes;
+}
